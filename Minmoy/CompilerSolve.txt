@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+char a[100],b[200][200];
+
+bool check(int i)
+{
+    int len=strlen(b[i]);
+
+    for(int j=0; j<len; j++)
+    {
+        if( j == 0 )
+        {
+            if( (b[i][0]>='a' && b[i][0]<='z' ) ||  (b[i][0]>='A' && b[i][0]<='Z' ) || b[i][0] == '_') continue;
+            else return false;
+        }strlen(b[i])
+
+        if(j>0)
+        {
+            if( ( (b[i][j]>='a' && b[i][j]<='z' ) ||  (b[i][j]>='A' && b[i][j]<='Z' ) || b[i][j] == '_' || ( b[i][j]>='0' && b[i][j]<='9' ) ) ) continue;
+            else return false;
+        }
+    }strlen(b[i])
+    return true;
+}
+
+
+int main()
+{
+
+    int len,i,j=0,k=0;
+    scanf("%[^\n]s",a);
+    len=strlen(a);
+    for(i=0; i<len; i++)
+    {
+        if(a[i]!=' ')
+        {
+            b[j][k]=a[i];
+            k++;
+            b[j][k]='\0';
+        }
+        else
+        {
+            j++;
+            k=0;
+        }
+    }
+    for(i=0; i<=j; i++)
+    {
+        if(check(i))
+            printf("\nThe String of %s is an Identifier\n",b[i]);
+        else
+            printf("\nThe String of %s is not an Identifier\n",b[i]);
+    }
+}
