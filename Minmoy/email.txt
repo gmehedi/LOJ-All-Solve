@@ -1,0 +1,86 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool check2(string s)
+{
+    bool s1=false, s2=false, s3=false, dot=false, atrat=false;
+    int len=s.size();
+   // cout<<"T  "<<len<<endl;
+    for(int i=0; i<len; i++)
+    {
+      //  cout<<"S2  "<<s1 <<"   "<<s2<<"  "<<s3<<"   "<<dot<<"  "<<atrat<<"  "<<s[i]<<endl;
+
+        if( ((s[i] >= 'A' && s[i]<='Z') || (s[i]>='a' && s[i]<='z') || (s[i] == '.') || (s[i]>='0' && s[i]<='9' ) ) && !s1 )
+        {
+            // cout<<"S1  "<<s1 <<"   "<<s2<<"  "<<s3<<"   "<<dot<<"  "<<atrat<<"  "<<s[i]<<endl;
+            s1=true; continue;
+        }
+        if(s1 && s[i] == '@' && !atrat) { atrat=true; continue; }
+        if( ((s[i] >= 'A' && s[i]<='Z') || (s[i]>='a' && s[i]<='z') || (s[i] == '.') || (s[i]>='0' && s[i]<='9' ) ) && s1 && atrat && !s2)
+        {
+            s2=true;
+           // cout<<"S3  "<<s1 <<"   "<<s2<<"  "<<s3<<"   "<<dot<<"  "<<atrat<<"  "<<s[i]<<endl;
+            continue;
+        }
+        if(s1 && s2 && atrat && s[i] == '.' && !dot)
+        {
+            // cout<<"S4  "<<s1 <<"   "<<s2<<"  "<<s3<<"   "<<dot<<"  "<<atrat<<"  "<<s[i]<<endl;
+            dot=true; continue;
+        }
+        if( ((s[i] >= 'A' && s[i]<='Z') || (s[i]>='a' && s[i]<='z') || (s[i] == '.') || (s[i]>='0' && s[i]<='9' ) ) && s1 && s2 && dot && atrat && !s3 )
+        {
+            s3=true;
+           //  cout<<"S5  "<<s1 <<"   "<<s2<<"  "<<s3<<"   "<<dot<<"  "<<atrat<<"  "<<s[i]<<endl;
+            continue;
+        }
+
+    }
+  //  cout<<"S  "<<s1 <<"   "<<s2<<"  "<<s3<<"   "<<dot<<"  "<<atrat<<endl;
+    if(s1 && s2 && s3 && dot && atrat) return true;
+
+    return false;
+}
+
+bool check(string s)
+{
+    int len=s.size();
+    if( (s[0] >= 'A' && s[0]<='Z') || (s[0]>='a' && s[0]<='z') || (s[0]>='0' && s[0]<='9' )  )
+    {
+
+    }
+    else return false;
+
+    int cnt=0;
+
+    for(int i=0; i<len; i++)
+    {
+        if( (s[i] >= 'A' && s[i]<='Z') || (s[i]>='a' && s[i]<='z') || (s[i] == '.') || (s[i]>='0' && s[i]<='9' ) )
+        {
+            continue;
+        }
+        else if(s[i] == '@') cnt++;
+        else return false;
+
+    }
+
+    if(check2(s) && cnt == 1) return true;
+
+
+    return false;
+}
+int main()
+{
+    string s;
+    while(1)
+    {
+        getline(cin,s);
+        if(check(s))
+        {
+           printf("This is a valid email address\n\n");
+        }
+        else printf("This is not a valid email address\n\n");
+
+    }
+    return 0;
+}
+
