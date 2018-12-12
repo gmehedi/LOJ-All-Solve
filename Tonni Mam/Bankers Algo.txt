@@ -1,0 +1,153 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<pair<char,int> >available;
+vector<int>process[1000+10];
+vector<int>maximum[1000+10];
+vector<int>need[1000+10];
+bool sign[1000];
+vector<int>ans;
+
+int n,m;
+
+void Result()
+{
+    for(int i=0; i<m; i++)
+    {
+      //  cout<<"SS  "<<sign[i]<<"  "<<endl;
+        if(sign[i])
+        {
+            printf("UnSafe\n");
+            return;
+        }
+    }
+    printf("Safe\n");
+    return;
+}
+
+void Update(int ind)
+{
+   // cout<<"I   "<<ind<<endl;
+
+    for(int i=0; i<n; i++)
+    {
+        available[i].second += process[ind][i] ;
+    }
+    printf("After the update\n");
+
+    for(int i=0; i<n; i++)
+    {
+        cout<< available[i].second<<" ";
+    }
+    printf("\n");
+}
+
+void Check()
+{
+    memset(sign,true,sizeof sign);
+
+    while(1)
+    {
+        bool brk=true;
+        for(int i=0; i<m; i++)
+        {
+            bool yes=true;
+            if(!sign[i]) continue;
+
+            for(int j=0; j<n; j++)
+            {
+               // cout<<"R  "<<available[j].second <<"  "<< need[i][j]<<endl;
+                if(available[j].second >= need[i][j]) continue;
+               //cout<<"NN"<<endl;
+                yes=false;
+            }
+            if(yes)
+            {
+                Update(i);
+                sign[i]=false;
+                brk=false;
+                cout<<"Process number  "<<i+1<<" is complete"<<endl;
+                ans.push_back(i+1);
+            }
+        }
+
+        if(brk)
+        {
+            Result();
+            break;
+        }
+    }
+}
+
+int main()
+{
+    printf("Enter the number of Resources\n");
+    scanf("%d",&n);
+
+    for(int i=0; i<n; i++)
+    {
+        char ch;
+        int temp;
+        scanf(" %c%d",&ch,&temp);
+        available.push_back(make_pair(ch,temp));
+    }
+
+    printf("Enter the number of process\n");
+    scanf("%d",&m);
+
+    printf("Enter the Processes (currently allocated resources):\n");
+    for(int i=0; i<m; i++)
+    {
+       for(int j=0; j<n; j++)
+       {
+           int temp;
+           scanf("%d",&temp);
+           process[i].push_back(temp);
+       }
+    }
+    printf("Enter the Maximum resorces\n");
+    for(int i=0; i<m; i++)
+    {
+       for(int j=0; j<n; j++)
+       {
+           int temp;
+           scanf("%d",&temp);
+           maximum[i].push_back(temp);
+       }
+    }
+
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            //cout<<"H  "<<maximum[i][j]<<"  "<<process[i][j]<<endl;
+            need[i].push_back(maximum[i][j]-process[i][j]);
+        }
+    }
+
+    printf("The Need Table\n");
+
+    for(int i=0; i<m; i++)
+    {
+        printf("P%d--> ",i+1);
+        for(int j=0; j<n; j++)
+        {
+            printf("%d ",need[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\n\n");
+    Check();
+
+    printf("\n\n\nThe Step of processing\n\n");
+
+    for(int i=0; i<ans.size(); i++)
+    {
+        cout<<"P"<<ans[i];
+        if(i+1 != ans.size())cout<<" --->  ";
+    }
+    cout<<endl;
+
+    return 0;
+}
