@@ -1,0 +1,177 @@
+
+#include <bits/stdc++.h>
+#include <bits/stdc++.h>
+#define pii              pair <int,int>
+#define pll              pair <long long,long long>
+#define sc               scanf
+#define pf               printf
+#define Pi               2*acos(0.0)
+#define ms(a,b)         memset(a, b, sizeof(a))
+#define pb(a)            push_back(a)
+#define MP               make_pair
+#define db               double
+#define ll               long long
+#define ull               unsigned long long
+#define f               first
+#define s              second
+#define sqr(x)           (x)*(x)
+#define VI               vector <int>
+#define DBG              pf("Hi\n")
+#define MOD              1000000007
+#define SZ(a)            (int)a.size()
+#define sf(a)            scanf("%d",&a)
+#define sfl(a)           scanf("%lld",&a)
+#define sff(a,b)         scanf("%d %d",&a,&b)
+#define sffl(a,b)        scanf("%lld %lld",&a,&b)
+#define sfff(a,b,c)      scanf("%d %d %d",&a,&b,&c)
+#define sfffl(a,b,c)     scanf("%lld %lld %lld",&a,&b,&c)
+#define loop(i,n)        for(int i=0;i<n;i++)
+#define loop1(i,n)       for(int i=1;i<=n;i++)
+#define REP(i,a,b)       for(int i=a;i<b;i++)
+#define RREP(i,a,b)      for(int i=a;i>=b;i--)
+#define intlim           2147483648
+#define ull              unsigned long long
+#define gcd(a, b)        __gcd(a, b)
+#define lcm(a, b)        ((a)*((b)/gcd(a,b)))
+#define mk(x1,y1) make_pair(x1, y1)
+#define maxl 1000010
+
+using namespace std;
+
+
+/*----------------------Graph Moves----------------*/
+//const int fx[]={+1,-1,+0,+0};
+//const int fy[]={+0,+0,+1,-1};
+//const int fx[]={+0,+0,+1,-1,-1,+1,-1,+1};   // Kings Move
+//const int fy[]={-1,+1,+0,+0,+1,+1,-1,-1};  // Kings Move
+//const int fx[]={-2, -2, -1, -1,  1,  1,  2,  2};  // Knights Move
+//const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
+/*------------------------------------------------*/
+
+/*-----------------------Bitmask------------------*/
+//int Set(int N,int pos){return N=N | (1<<pos);}
+//int reset(int N,int pos){return N= N & ~(1<<pos);}
+//bool check(int N,int pos){return (bool)(N & (1<<pos));}
+//freopen("in.txt","r",stdin);
+//freopen("out.txt","w",stdin);
+/*------------------------------------------------*/
+using namespace std;
+int burst[maxl],arrival[maxl],p[maxl], ptemp[maxl];
+int n,q;
+
+bool Sort()
+{
+    for(int i=0; i<n-1; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            if(arrival[i]>arrival[j])
+            {
+                swap(arrival[i],arrival[j]);
+                swap(p[i],p[j]);
+                swap(burst[i],burst[j]);
+            }
+        }
+    }
+}
+
+int gind=0;
+vector<pair <int,int > >gannt,gannt1;
+
+
+void RoundRobin()
+{
+    gannt.pb(mk(p[0],arrival[0]));
+    while(1)
+    {
+        bool sign=true;
+        //   cout<<"TT"<<endl;
+        for(int i=0; i<n; i++)
+        {
+            if(burst[i] <=0 ) continue;
+            if( burst[i] <q)
+            {
+                gannt.pb(mk(p[i],burst[i]));
+                burst[i]=0;
+            }
+            gannt.pb(mk( p[i],q));
+            burst[i]-=q;
+            sign=false;
+        }
+        if(sign) break;
+
+    }
+    for(int i=1; i<(int)gannt.size(); i++)
+    {
+        gannt[i].s=gannt[i-1].s+gannt[i].s;
+    }
+
+    for(int i=1; i<(int)gannt.size(); i++)
+    {
+        gannt1.push_back(mk(gannt[i].f,gannt[i].s));
+    }
+    // cout<<gannt[i].f<<"  "<<gannt[i].s<<endl;
+
+}
+
+void Avarage()
+{
+    //  cout<<"TTT"<<endl;
+    ll totalw=0,totalt=0;
+    int st=arrival[0];
+    bool sign1[maxl];
+    memset(sign1,true,sizeof sign1);
+
+    for(int i= gannt.size()-1; i>=1; i--)
+    {
+        int en=gannt[i].s;
+        int pp1=gannt[i].f;
+
+        if(sign1[pp1])
+        {
+            sign1[pp1]=false;
+            totalt += en-ptemp[pp1];
+            //  cout<<"R  "<<en-ptemp[pp1]<< "  "<<en<<"  "<<"  "<<pp1<<"  "<<ptemp[pp1]<<endl;
+        }
+    }
+
+    printf("The Avarage Turn around time %.10f\n",(double)totalt/(double)n);
+    ptemp[gannt1[0].f]=gannt[1].s;
+    for(int i=0; i<(int)gannt1.size()-1; i++)
+    {
+       // cout<<"RR  "<<gannt1[i].f<<"  "<<gannt1[i].s<<endl;
+        int pp=gannt1[i+1].f;
+        int tempp=gannt1[i].s;
+       //cout<<"E  "<<pp<<"  "<<tempp<<"  "<<ptemp[pp]<<endl;
+        totalw = totalw+tempp-ptemp[pp];
+        ptemp[pp]=gannt1[i+1].s;
+     //   cout<<"R  "<<pp<<"  "<<ptemp[pp]<<"  "<<gannt1[i+1].s<<endl;
+
+    }
+    printf("The Avarage Wating Time is %.10f\n",(double)totalw/(double)n);
+}
+int main()
+{
+    scanf("%d %d",&n,&q);
+
+    for(int i=0; i<n; i++) scanf("%d",&arrival[i]);
+    for(int i=0; i<n; i++) scanf("%d",&burst[i]);
+    for(int i=1; i<=n; i++) p[i-1]=i;
+
+    Sort();
+    for(int i=0; i<n; i++)
+    {
+        ptemp[p[i]]=arrival[i];
+    }
+
+    RoundRobin();
+
+    Avarage();
+    return 0;
+}
+
+/*
+4 5
+0 10 5 0
+15 10 25 15
+*/
