@@ -3,3 +3,6 @@ https://www.appcoda.com/learnswift/build-your-first-app.html?fbclid=IwAR2_uUe19p
 
 
 https://www.raywenderlich.com/ios/learn
+
+
+swipt documents:  https://docs.swift.org/swift-book/LanguageGuide/Closures.html#ID103
