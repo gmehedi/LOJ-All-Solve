@@ -1,8 +1,11 @@
-https://www.appcoda.com/learnswift/build-your-first-app.html?fbclid=IwAR2_uUe19pGlswCkzNOG1ach4oF7PWtuVm2Cqo6hi-19TNgApXbEJ05vGTk
+Project tutorial :
 
+1. https://www.appcoda.com/learnswift/build-your-first-app.html?fbclid=IwAR2_uUe19pGlswCkzNOG1ach4oF7PWtuVm2Cqo6hi-          19TNgApXbEJ05vGTk
 
+2. https://www.raywenderlich.com/ios/learn
+------------------------------------------------------------------------------------------------------------------------------
 
-https://www.raywenderlich.com/ios/learn
+swipt documents: 
 
-
-swipt documents:  https://docs.swift.org/swift-book/LanguageGuide/Closures.html#ID103
+1. https://docs.swift.org/swift-book/LanguageGuide/Closures.html#ID103
+------------------------------------------------------------------------------------------------------------------------------
