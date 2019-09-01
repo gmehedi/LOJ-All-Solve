@@ -1,0 +1,70 @@
+
+                                                         Sorting and Xor        
+                                                       ime limit 1 seconds
+                                                    memory limit 256 megabytes     
+                                                        inputstandard input
+                                                       outputstandard output
+
+
+You are given an integer number is called n and n integer numbers like as Ai, Ai+1, Ai+2, An-1, ( 0 <= i < n).
+You should append the n integer numbers in such a way that After appending the resulting number should be maximum as large as possible.
+Like as...
+You are given n = 4 numbers such as 9, 11, 3, 29. You can append them many ways.Some possible ways are.....
+
+911329 
+931129
+929311
+932911
+etc...
+......
+
+But the maximum number should be 4th way that is 932911. So the sequence should be
+9 then,
+3 then,
+29 then,
+11
+
+After builting the serial of those integers, You should take 3 integer numbers from them, they are first number [ from index = 0 ] , middle number [ from index = floor( n/2 ) ] and
+last number [ from index = n-1 ].
+
+For this example, we should take 9 [ from index = 0 ], 29 [ from index = n/2 = 4/2 = 2 ], and 11 [ from index = n-1 = 3 ].
+
+Then take the maximum and minimum number from this 3 integers that means 9, 29, 11. So maximum number = 29 and minimum number = 9.
+
+Finally you should print the result of Xor ( ^ ) operation of interval minimum number to maximum number.
+That means....
+9 ^ 10 ^ 11 ^ 12 ^ 13 ........... ..... ... .. . ^29 = 9.
+So the result is 9.
+
+We hear, you are good programmer of BUBT.So we request you to solve this problem.
+
+
+Input:
+Take an integer number n, Indicate the number of integers. Then take n integer numbers Ai , Ai+1, Ai+2....An-1. ( 0 <= i < n ).
+
+Constraints:
+1 <= n <= 10^5
+1 <= Ai <= 10^12
+
+Output:
+You should print the result of Xor ( ^ ) operation of interval minimum number to maximum number with above condition.
+
+Test Case:
+
+input:
+
+4
+9 11 3 29
+
+output:
+
+9
+
+
+Problem setter:
+M M Mehedi Hasan.
+Department of CSE ( 10th semester ).
+
+
+
+
