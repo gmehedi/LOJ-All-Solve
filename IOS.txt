@@ -1,13 +1,17 @@
-Slack : https://app.slack.com/client/TLD3922AK/GLB82JDHB?fbclid=IwAR0ZIE5D47p21rVWm2MGHF44YLcBY1yQb7j7G7oQIntUc_ZVu3wXNsVhSjU
+Slack : 
+https://app.slack.com/client/TLD3922AK/GLB82JDHB?fbclid=IwAR0ZIE5D47p21rVWm2MGHF44YLcBY1yQb7j7G7oQIntUc_ZVu3wXNsVhSjU
 
 Project tutorial :
 
 1. https://www.appcoda.com/learnswift/build-your-first-app.html?fbclid=IwAR2_uUe19pGlswCkzNOG1ach4oF7PWtuVm2Cqo6hi-          19TNgApXbEJ05vGTk
 
-2. https://www.raywenderlich.com/ios/learn
+2. https://www.raywenderlich.com/ios/learn 
+
+3* https://www.youtube.com/watch?v=83WXmhin_LU&list=PL6gx4Cwl9DGDgp7nGSUnnXihbTLFZJ79B
 ------------------------------------------------------------------------------------------------------------------------------
 
 swipt documents: 
 
 1. https://docs.swift.org/swift-book/LanguageGuide/Closures.html#ID103
 ------------------------------------------------------------------------------------------------------------------------------
+
