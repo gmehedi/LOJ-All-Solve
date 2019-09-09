@@ -23,4 +23,9 @@ https://www.datacamp.com/community/tutorials/convolutional-neural-networks-pytho
 
 https://www.datacamp.com/community/tutorials/deep-learning-python#ann
 
+
+youtube :
+
+https://www.youtube.com/watch?v=UkzhouEk6uY&list=PLZbbT5o_s2xrwRnXk_yCPtnqqo4_u2YGL&index=3
+
 -----------------------------------------------------------------------------------------------------------------------------------
