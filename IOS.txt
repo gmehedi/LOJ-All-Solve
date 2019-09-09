@@ -15,3 +15,8 @@ swipt documents:
 1. https://docs.swift.org/swift-book/LanguageGuide/Closures.html#ID103
 ------------------------------------------------------------------------------------------------------------------------------
 
+AI:
+
+https://www.datacamp.com/community/tutorials/convolutional-neural-networks-python?utm_source=adwords_ppc&utm_campaignid=1455363063&utm_adgroupid=65083631748&utm_device=c&utm_keyword=&utm_matchtype=b&utm_network=g&utm_adpostion=1t1&utm_creative=332602034361&utm_targetid=aud-392016246653:dsa-473406581915&utm_loc_interest_ms=&utm_loc_physical_ms=9069450&gclid=CjwKCAjw8NfrBRA7EiwAfiVJpboIoWFmjGSi7JyYBW6nR9tRUsf8Djz1uTq9_gsXNLTmeGzzGXnxLBoCuwMQAvD_BwE
+
+-----------------------------------------------------------------------------------------------------------------------------------
