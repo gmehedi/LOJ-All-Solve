@@ -8,6 +8,10 @@ Project tutorial :
 2. https://www.raywenderlich.com/ios/learn 
 
 3* https://www.youtube.com/watch?v=83WXmhin_LU&list=PL6gx4Cwl9DGDgp7nGSUnnXihbTLFZJ79B
+
+4. MusicPlayerApps::
+https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontroller
+
 ------------------------------------------------------------------------------------------------------------------------------
 
 swipt documents: 
