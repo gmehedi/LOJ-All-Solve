@@ -119,3 +119,211 @@ int main(){
 "33.145334,-117.243233",33.145333,-117.243334",0,000100
 
 */
+
+
+
+
+
+#include <bits/stdc++.h>
+#include <string>
+#include <stack>
+#include <queue>
+#include <cstdio>
+#include <cmath>
+#include <iostream>
+#define vpii vector< pair<int,int> >
+#define vi vector<int>
+#define for0(i,a) for(int i=0;i<a;i++)
+#define pii              pair <int,int>
+#define pll              pair <long long,long long>
+#define sc               scanf
+#define pf               printf
+#define Pi               2*acos(0.0)
+#define ms(a,b)          memset(a, b, sizeof(a))
+#define pb(a)            push_back(a)
+#define MP               make_pair
+#define db               double
+#define ll               long long
+#define ull              unsigned long long
+#define f                first
+#define s                second
+#define sqr(x)           (x)*(x)
+#define VI               vector <int>
+#define DBG              pf("Hi\n")
+#define MOD              100000007
+#define SZ(a)            (int)a.size()
+#define sf(a)            scanf("%d",&a)
+#define sfl(a)           scanf("%lld",&a)
+#define sff(a,b)         scanf("%d %d",&a,&b)
+#define sffl(a,b)        scanf("%lld %lld",&a,&b)
+#define sfff(a,b,c)      scanf("%d %d %d",&a,&b,&c)
+#define sfffl(a,b,c)     scanf("%lld %lld %lld",&a,&b,&c)
+#define loop(i,n)        for(int i=0;i<n;i++)
+#define loop1(i,n)       for(int i=1;i<=n;i++)
+#define REP(i,a,b)       for(int i=a;i<b;i++)
+#define RREP(i,a,b)      for(int i=a;i>=b;i--)
+#define intlim           2147483648
+#define ull              unsigned long long
+#define gcd(a, b)        __gcd(a, b)
+#define lcm(a, b)        ((a)*((b)/gcd(a,b)))
+#define mk(x1,y1) make_pair(x1, y1)
+#define maxl 1000
+#define psz 20
+#define Fin      freopen("in.txt","r",stdin)
+#define Fout     freopen("out.txt","w",stdout)
+
+
+/*----------------------Graph Moves----------------*/
+//const int fx[]={+1,-1,+0,+0};
+//const int fy[]={+0,+0,+1,-1};
+//const int fx[]={+0,+0,+1,-1,-1,+1,-1,+1};   // Kings Move
+//const int fy[]={-1,+1,+0,+0,+1,+1,-1,-1};  // Kings Move
+//const int fx[]={-2, -2, -1, -1,  1,  1,  2,  2};  // Knights Move
+//const int fy[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
+/*------------------------------------------------*/
+
+/*-----------------------Bitmask------------------*/
+//int Set(int N,int pos){return N=N | (1<<pos);}
+//int reset(int N,int pos){return N= N & ~(1<<pos);}
+//bool check(int N,int pos){return (bool)(N & (1<<pos));}
+//freopen("in.txt","r",stdin);
+//freopen("out.txt","w",stdout);
+//ios_base::sync_with_stdio(false);
+ //cin.tie(NULL);
+using namespace std;
+
+
+vector<int>g[maxl + 3];
+int value[maxl + 2];
+bool sign[maxl + 3];
+int n, k;
+
+struct str{
+
+    int node;
+    int val;
+
+    bool operator< (const str & temp) const{
+        return val < temp.val;
+    }
+
+};
+
+int Bfs1(){
+
+    queue<int>q1;
+    int ans = 0;
+    memset(sign, true, sizeof sign);
+    q1.push(1);
+    sign[1] = false;
+
+    while(!q1.empty()){
+
+        int u = q1.front();
+        q1.pop();
+
+        if(value[u] != k) continue;
+        ans += k;
+        priority_queue<str>q;
+
+        for(auto v : g[u]){
+            if(!sign[v]) continue;
+            sign[v] = false;
+          //  cout<<"U  "<<u<<"  "<<v<<"  "<<value[v]<<endl;
+            q.push( {v, value[v]} );
+        }
+        for(int i = 0; i < k; i++){
+               // cout<<"Q  "<<q.top().node<<"  "<<q.top().val<<endl;
+            q1.push(q.top().node);
+            q.pop();
+        }
+
+      //  cout<<"HH"<<endl;
+    }
+
+    return ans;
+}
+
+
+void Bfs(){
+
+    queue<int>q;
+    memset(sign, true, sizeof sign);
+    q.push(1);
+    sign[1] = false;
+    while(!q.empty()){
+
+        int f = q.front();
+        q.pop();
+        if(g[f].size() >= (k + 1) || (f == 1 && g[f].size() >= k) ){
+            value[f] = k;
+        }
+        else value[f] = 0;
+
+        for(auto v : g[f]){
+            if(sign[v]){
+                sign[v] = false;
+                q.push(v);
+            }
+        }
+    }
+}
+
+
+int main(){
+
+    int t, cas = 1;
+    scanf("%d",&t);
+
+    while(t--){
+        scanf("%d%d",&n,&k);
+
+        for(int i = 1; i < n; i++){
+            int u, v;
+            scanf("%d%d",&u, &v);
+            g[u].pb(v);
+            g[v].pb(u);
+        }
+        Bfs();
+
+        printf("Case %d: %d\n", cas++, Bfs1() + 1);
+        for(int i = 0; i <= n; i++){
+            g[i].clear();
+        }
+
+    }
+
+    return 0;
+}
+
+
+/*
+
+3
+
+6 2
+1 2
+1 3
+2 4
+3 5
+3 6
+
+
+6 3
+1 2
+1 3
+1 4
+4 5
+4 6
+
+6 4
+1 2
+1 3
+1 4
+4 5
+4 6
+
+
+
+*/
+
